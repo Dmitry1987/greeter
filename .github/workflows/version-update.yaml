@@ -32,7 +32,7 @@ jobs:
           git config --global user.email bot@example.com   
           git commit -am "[BOT] version update"
           
-          git push origin/$GITHUB_REF_NAME
+          git push 
 
 
       # - name: push changes
