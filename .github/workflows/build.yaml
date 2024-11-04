@@ -2,13 +2,18 @@ on:
   push:
     branches: ['*']
   pull_request:
-  
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
       - name: build
         run: |        
+          pwd
+          ls -l .
+          ls -l ..
           mkdir build && cd build
           cmake .. -G"Unix Makefiles"
           cmake --build . --target all
