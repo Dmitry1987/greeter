@@ -19,13 +19,23 @@ jobs:
           grep '#define GREETER_VERSION_PATCH' version.h
           UPDATED_VERSION="$(grep '#define GREETER_VERSION_PATCH' version.h | cut -d' ' -f 3)"
           echo "Updated version is: ${UPDATED_VERSION}"
+          apt install git -y
+          
+          env 
 
-      - name: push changes
-        uses: devops-infra/action-commit-push@master
-        with:
-          github_token: "${{ secrets.GITHUB_TOKEN }}"
-          add_timestamp: false
-          commit_prefix: "[BOT]"
-          commit_message: "version update"
-          target_branch: "${{ github.ref_name }}"
+          git config --global user.name "Bot"  
+          git config --global user.email bot@example.com   
+          git commit -am "[BOT] version update"
+          
+          git push origin/$GITHUB_REF_NAME
+
+
+      # - name: push changes
+      #   uses: devops-infra/action-commit-push@master
+      #   with:
+      #     github_token: "${{ secrets.GITHUB_TOKEN }}"
+      #     add_timestamp: false
+      #     commit_prefix: "[BOT]"
+      #     commit_message: "version update"
+      #     target_branch: "${{ github.ref_name }}"
 
