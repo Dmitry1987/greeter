@@ -1,0 +1,13 @@
+on:
+  push:
+    branches: [*]
+
+jobs:
+  version-update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: update version
+        run: |        
+          CURRENT_VERSION="$(grep '#define GREETER_VERSION_PATCH' | cut -d' ' -f 3)"
+          NEW_VERSION=$((CURRENT_VERSION + 1))
+          sed -i "s/#define GREETER_VERSION_PATCH 1/#define GREETER_VERSION_PATCH ${NEW_VERSION}"

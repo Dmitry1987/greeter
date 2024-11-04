@@ -1,0 +1,15 @@
+on:
+  push:
+    branches: [*]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: build
+        run: |        
+          mkdir build && cd build
+          cmake .. -G"Unix Makefiles"
+          cmake --build . --target all
+          ls -l 
+          
