@@ -20,4 +20,24 @@ jobs:
           cmake .. -G"Unix Makefiles"
           cmake --build . --target all
           ls -l 
-          
+      - name: artifact save
+        uses: actions/upload-artifact@v4
+        with:
+          name: binary
+          path: greeter
+
+
+  testing:
+    runs-on: ubuntu-latest
+    depends-on: build
+    steps:
+    - name: Download greeter
+      uses: actions/download-artifact@v4
+      with:
+        name: binary
+    - name: run test
+      run: |
+        ls -l 
+        chmod +x greeter
+        ./greeter --version || ./greeter -help
+        
