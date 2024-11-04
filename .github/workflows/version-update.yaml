@@ -12,6 +12,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: update version
+        env:
+          GITHUB_TOKEN: ${{ github.GITHUB_TOKEN }}
         run: |      
           whoami
             
@@ -23,8 +25,8 @@ jobs:
           echo "Updated version is: ${UPDATED_VERSION}"
 
           sudo apt install git -y
-          
-          env 
+           
+          git remote set-url --push origin https://Dmitry1987:${GITHUB_TOKEN}@github.com/Dmitry1987/greeter
 
           git config --global user.name "Bot"  
           git config --global user.email bot@example.com   
