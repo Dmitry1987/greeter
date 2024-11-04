@@ -19,7 +19,8 @@ jobs:
           grep '#define GREETER_VERSION_PATCH' version.h
           UPDATED_VERSION="$(grep '#define GREETER_VERSION_PATCH' version.h | cut -d' ' -f 3)"
           echo "Updated version is: ${UPDATED_VERSION}"
-          apt install git -y
+
+          sudo apt install git -y
           
           env 
 
